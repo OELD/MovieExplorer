@@ -97,4 +97,4 @@ GitHub Actions runs:
 
 ## 📝 License
 
-MIT License © 2025 You
+MIT License © 2025 OELD
