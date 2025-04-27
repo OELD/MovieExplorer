@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+  frontend:
+    image: httpd:2.4
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/local/apache2/htdocs/
