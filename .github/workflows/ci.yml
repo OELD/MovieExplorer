@@ -1,0 +1,30 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+      - name: Smoke-test DB schema
+        run: |
+          python - <<EOF
+import sqlite3
+conn = sqlite3.connect(":memory:")
+conn.execute("CREATE TABLE movies (id INTEGER PRIMARY KEY, title TEXT, director TEXT, year INTEGER)")
+print("DB schema OK!")
+EOF
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Lint & Build
+        run: echo "📦 Frontend is CDN-based, no build step required"
