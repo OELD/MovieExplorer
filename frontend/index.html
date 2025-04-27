@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Explorer</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Movie Explorer</h1>
+    <ul>
+      <li v-for="movie in movies" :key="movie.id">
+        {{ movie.title }} ({{ movie.year }}) — Directed by {{ movie.director }}
+      </li>
+    </ul>
+    <form @submit.prevent="addMovie">
+      <input v-model="newMovie.title" placeholder="Title" required/>
+      <input v-model="newMovie.director" placeholder="Director" required/>
+      <input v-model.number="newMovie.year" placeholder="Year" required/>
+      <button type="submit">Add Movie</button>
+    </form>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
